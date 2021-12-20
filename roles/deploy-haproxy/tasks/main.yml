@@ -1,0 +1,17 @@
+---
+- name: Git checkout
+  ansible.builtin.git:
+    repo: 'git@github.com:ragu101/patroni-haproxy.git'
+    dest: "{{ basepath }}/patroni-haproxy"
+    version: main
+
+- name: Install postgres helm chart
+  kubernetes.core.helm:
+    name: haproxy
+    namespace: "{{ nameSpace }}"
+    chart_ref: "{{ basepath }}/patroni-haproxy"
+
+- name: Sleep for 60 seconds and continue with play
+  wait_for:
+    timeout: 60
+  delegate_to: localhost

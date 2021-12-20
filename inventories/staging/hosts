@@ -1,0 +1,10 @@
+[localhost]
+localhost 
+
+[localhost:vars]
+nameSpace=default
+basepath=~/Documents/anible_repos
+DB_USER="postgres"
+DB_HOST="haproxy"
+DB_PORT=5432
+DB_NAME="postgres"

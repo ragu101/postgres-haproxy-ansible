@@ -1,0 +1,4 @@
+- hosts: localhost
+  roles:
+    # - postgres-operator
+    - deploy-haproxy

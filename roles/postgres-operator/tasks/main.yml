@@ -1,0 +1,26 @@
+---
+- name: Git checkout
+  ansible.builtin.git:
+    repo: 'git@github.com:zalando/postgres-operator.git'
+    dest: "{{ basepath }}/postgres-operator"
+    version: master
+
+- name: Install postgres-operator helm chart
+  kubernetes.core.helm:
+    name: postgres-operator
+    namespace: "{{ nameSpace }}"
+    chart_ref: "{{ basepath }}/postgres-operator/charts/postgres-operator"
+
+- name: Sleep for 60 seconds and continue with play
+  wait_for:
+    timeout: 60
+  delegate_to: localhost
+
+- name: Create patroni cluster
+  raw: kubectl create -f "{{ basepath }}"/postgres-operator/manifests/minimal-postgres-manifest.yaml -n "{{ nameSpace }}"
+
+
+- name: Sleep for 60 seconds and continue with play
+  wait_for:
+    timeout: 60
+  delegate_to: localhost

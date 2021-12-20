@@ -1,0 +1,3 @@
+---
+- name: Run hatester application
+  raw: kubectl run hatester --image=ragu121/hatester:v0.0.9 --env DB_HOST="{{ DB_HOST }}" --env DB_NAME="{{ DB_NAME }}" --env DB_USER="{{ DB_USER }}" --env DB_PASSWORD="{{ DB_PASSWORD }}"
