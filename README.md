@@ -1,8 +1,12 @@
+# This is repo is used to deploy helm charts for postgres, haproxy and test them together
+
 Role Name
 =========
 
 postgres-operator - Helm deployment of patroni backed postgres cluster
+
 deploy-haproxy - Helm deployment of haproxy 
+
 test-haproxy - Test postgres connectivity through HAproxy by a container
 
 Role Variables
