@@ -22,12 +22,15 @@ How to Run Playbook
 #Replace appropriate values for below variables
 
 Step 1: deploy postgres & haproxy
+
 ansible-playbook postgres.yaml -e nameSpace=default -e basepath=/Users/ragu/Documents/git_repos/ansible-roles
 
 Step 2: Get postgres password
+
 kubectl get secret postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do -o 'jsonpath={.data.password}' | base64 -d
 
 Step 3: Test HAproxy (update below variables with appropriate values)
+
 ansible-playbook test-haproxy.yaml -e nameSpace=default -e DB_NAME=postgres -e DB_USER=postgres -e DB_PASSWORD=<POSTGRES_PASSWORD> -e DB_HOST=haproxy -e DB_PORT=5432
 
 
